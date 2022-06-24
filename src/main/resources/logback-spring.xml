@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOGS" value="./logs"/>
+    <property name="TIMESTAMP" value="%d{HH:mm:ss.SSS}"/>
+    <property name="THREAD_NAME" value="%thread"/>
+    <property name="LEVEL" value="%level"/>
+    <property name="TRACE_ID" value="%X{traceId}"/>
+    <property name="LOGGER_NAME" value="%c{0}"/>
+    <property name="MESSAGE" value="%msg%nopex%n%red(%xException)"/>
+    <property name="MESSAGE_ESCAPED" value="%replace(%msg){'\n','\\\\n'} %replace(%xException){'\n','\\\\n'}%nopex%n"/>
+
+    <springProfile name="dev,default">
+        <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+                <pattern>
+                    %black(${TIMESTAMP}) %highlight(${LEVEL}) [%gray(${THREAD_NAME})] [%yellow(${LOGGER_NAME})] [%green(${TRACE_ID})] ${MESSAGE}
+                </pattern>
+            </encoder>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="Console"/>
+        </root>
+
+        <logger name="com.example.feigntest" level="DEBUG" additivity="false">
+            <appender-ref ref="Console"/>
+        </logger>
+    </springProfile>
+</configuration>

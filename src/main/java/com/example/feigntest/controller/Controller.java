@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.feigntest.client.Client;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @AllArgsConstructor
 @RestController
 @RequestMapping
+@Slf4j
 public class Controller {
 
     private Client client;
@@ -19,10 +21,8 @@ public class Controller {
     public void post(@PathVariable final Boolean status) {
         if(status) {
             final String response = client.getSuccess();
-            System.out.println(response);
         } else {
             final String response = client.getFail();
-            System.out.println(response);
         }
     }
 }
