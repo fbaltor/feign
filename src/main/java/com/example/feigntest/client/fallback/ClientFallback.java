@@ -4,13 +4,13 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.example.feigntest.client.BasicApiClient;
+import com.example.feigntest.client.Client;
 
 import lombok.Setter;
 
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @Component
-public class BasicApiClientFallback implements BasicApiClient {
+public class ClientFallback implements Client {
     
     @Setter
     private Throwable cause;

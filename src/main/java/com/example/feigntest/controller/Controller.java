@@ -5,15 +5,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.feigntest.client.BasicApiClient;
+import com.example.feigntest.client.Client;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
 @RequestMapping
-public class BasicController {
+public class Controller {
 
-    private BasicApiClient client;
+    private Client client;
 
     @GetMapping("/{status}")
     public void post(@PathVariable final Boolean status) {
