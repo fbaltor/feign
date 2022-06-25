@@ -1,27 +1,25 @@
 package com.example.feigntest.client.fallback;
 
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
+import com.example.feigntest.client.Client;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import com.example.feigntest.client.Client;
-import lombok.Setter;
-@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 @Component
+@Slf4j
 public class ClientFallback implements Client {
-
-
-    
-    @Setter
-    private Throwable cause;
 
     @Override
     public String getSuccess() {
-        return "";
+        final String errorMessage = "[Fallback] Error on getSuccess";
+        log.info(errorMessage) ;
+        return errorMessage;
     }
 
     @Override
     public String getFail() {
-        return "";
+        final String errorMessage = "[Fallback] Error on getFail";
+        log.info(errorMessage) ;
+        return errorMessage;
     }
 }
